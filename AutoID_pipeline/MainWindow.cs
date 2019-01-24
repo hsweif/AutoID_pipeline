@@ -25,6 +25,7 @@ public partial class MainWindow : Gtk.Window
     private string onState = "ON", offState = "OFF";
     private string onSemantic, offSemantic;
     private JObject tagInfo;
+    int objNum = 0;
 
     public MainWindow() : base(Gtk.WindowType.Toplevel)
     {
@@ -63,12 +64,11 @@ public partial class MainWindow : Gtk.Window
             {
                 JObject o = (JObject)JToken.ReadFrom(reader);
                 string json = o.ToString();
-                int cnt = 0;
                 foreach(var pair in o)
                 {
                     Console.WriteLine(pair.Key);
-                    objectCombobox.InsertText(cnt, pair.Key);
-                    cnt++;
+                    objectCombobox.InsertText(objNum, pair.Key);
+                    objNum ++;
                 }
                 tagInfo = o;
             }
@@ -89,13 +89,6 @@ public partial class MainWindow : Gtk.Window
             {
                 writer.WriteRaw(tagInfo.ToString());
             }
-        }
-        objectCombobox.Clear();
-        int cnt = 0;
-        foreach (var pair in tagInfo)
-        {
-            objectCombobox.InsertText(cnt, pair.Key);
-            cnt++;
         }
     }
 
@@ -124,6 +117,8 @@ public partial class MainWindow : Gtk.Window
             JArray jArray = new JArray();
             JProperty jObject = new JProperty(objName, jArray);
             tagInfo.Add(jObject);
+            objectCombobox.InsertText(objNum, objName);
+            objNum++;
             Console.WriteLine(tagInfo);
         }
         UpdateObjectInfo();
@@ -144,7 +139,6 @@ public partial class MainWindow : Gtk.Window
 
     private void SaveButton_clicked(object sender, System.EventArgs eventArgs)
     {
-        Console.WriteLine("Saving...");
         TagInfo tag = new TagInfo(rfid, onSemantic, offSemantic);
         var stateArray = new JArray();
         var on = new JObject { { "on", onSemantic } };
@@ -158,5 +152,7 @@ public partial class MainWindow : Gtk.Window
             items.Insert(0, newItem);
         }
         Console.WriteLine(tagInfo.ToString());
+        UpdateObjectInfo();
     }
+
 }
