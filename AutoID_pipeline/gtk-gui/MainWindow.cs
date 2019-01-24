@@ -23,13 +23,19 @@ public partial class MainWindow
 
 	private global::Gtk.Alignment alignment1;
 
-	private global::Gtk.HBox hbox2;
+	private global::Gtk.HBox hbox5;
 
-	private global::Gtk.Label label4;
+	private global::Gtk.Label step2Label;
 
-	private global::Gtk.ComboBox combobox3;
+	private global::Gtk.VBox vbox5;
 
-	private global::Gtk.Button button3;
+	private global::Gtk.ComboBox objectCombobox;
+
+	private global::Gtk.HSeparator hseparator5;
+
+	private global::Gtk.Entry objectEntry;
+
+	private global::Gtk.Button objButton;
 
 	private global::Gtk.VPaned vpaned1;
 
@@ -158,40 +164,69 @@ Step 4:
 		this.alignment1 = new global::Gtk.Alignment(0.5F, 0.5F, 1F, 1F);
 		this.alignment1.Name = "alignment1";
 		// Container child alignment1.Gtk.Container+ContainerChild
-		this.hbox2 = new global::Gtk.HBox();
-		this.hbox2.Name = "hbox2";
-		this.hbox2.Homogeneous = true;
-		this.hbox2.Spacing = 6;
-		// Container child hbox2.Gtk.Box+BoxChild
-		this.label4 = new global::Gtk.Label();
-		this.label4.Name = "label4";
-		this.label4.Xalign = 0F;
-		this.label4.LabelProp = global::Mono.Unix.Catalog.GetString("2. Map tag to an object");
-		this.hbox2.Add(this.label4);
-		global::Gtk.Box.BoxChild w9 = ((global::Gtk.Box.BoxChild)(this.hbox2[this.label4]));
+		this.hbox5 = new global::Gtk.HBox();
+		this.hbox5.Name = "hbox5";
+		this.hbox5.Homogeneous = true;
+		this.hbox5.Spacing = 6;
+		// Container child hbox5.Gtk.Box+BoxChild
+		this.step2Label = new global::Gtk.Label();
+		this.step2Label.Name = "step2Label";
+		this.step2Label.Xalign = 0F;
+		this.step2Label.LabelProp = global::Mono.Unix.Catalog.GetString("2. Map the tag to an object");
+		this.hbox5.Add(this.step2Label);
+		global::Gtk.Box.BoxChild w9 = ((global::Gtk.Box.BoxChild)(this.hbox5[this.step2Label]));
 		w9.Position = 0;
-		// Container child hbox2.Gtk.Box+BoxChild
-		this.combobox3 = global::Gtk.ComboBox.NewText();
-		this.combobox3.Name = "combobox3";
-		this.hbox2.Add(this.combobox3);
-		global::Gtk.Box.BoxChild w10 = ((global::Gtk.Box.BoxChild)(this.hbox2[this.combobox3]));
-		w10.Position = 1;
-		// Container child hbox2.Gtk.Box+BoxChild
-		this.button3 = new global::Gtk.Button();
-		this.button3.CanFocus = true;
-		this.button3.Name = "button3";
-		this.button3.UseUnderline = true;
-		this.button3.Label = global::Mono.Unix.Catalog.GetString("Confirm");
-		this.hbox2.Add(this.button3);
-		global::Gtk.Box.BoxChild w11 = ((global::Gtk.Box.BoxChild)(this.hbox2[this.button3]));
-		w11.Position = 2;
+		// Container child hbox5.Gtk.Box+BoxChild
+		this.vbox5 = new global::Gtk.VBox();
+		this.vbox5.Name = "vbox5";
+		this.vbox5.Homogeneous = true;
+		this.vbox5.Spacing = 6;
+		// Container child vbox5.Gtk.Box+BoxChild
+		this.objectCombobox = global::Gtk.ComboBox.NewText();
+		this.objectCombobox.Name = "objectCombobox";
+		this.vbox5.Add(this.objectCombobox);
+		global::Gtk.Box.BoxChild w10 = ((global::Gtk.Box.BoxChild)(this.vbox5[this.objectCombobox]));
+		w10.Position = 0;
+		w10.Expand = false;
+		w10.Fill = false;
+		// Container child vbox5.Gtk.Box+BoxChild
+		this.hseparator5 = new global::Gtk.HSeparator();
+		this.hseparator5.Name = "hseparator5";
+		this.vbox5.Add(this.hseparator5);
+		global::Gtk.Box.BoxChild w11 = ((global::Gtk.Box.BoxChild)(this.vbox5[this.hseparator5]));
+		w11.Position = 1;
+		w11.Expand = false;
 		w11.Fill = false;
-		this.alignment1.Add(this.hbox2);
+		// Container child vbox5.Gtk.Box+BoxChild
+		this.objectEntry = new global::Gtk.Entry();
+		this.objectEntry.CanFocus = true;
+		this.objectEntry.Name = "objectEntry";
+		this.objectEntry.IsEditable = true;
+		this.objectEntry.InvisibleChar = '●';
+		this.vbox5.Add(this.objectEntry);
+		global::Gtk.Box.BoxChild w12 = ((global::Gtk.Box.BoxChild)(this.vbox5[this.objectEntry]));
+		w12.Position = 2;
+		w12.Expand = false;
+		w12.Fill = false;
+		this.hbox5.Add(this.vbox5);
+		global::Gtk.Box.BoxChild w13 = ((global::Gtk.Box.BoxChild)(this.hbox5[this.vbox5]));
+		w13.Position = 1;
+		// Container child hbox5.Gtk.Box+BoxChild
+		this.objButton = new global::Gtk.Button();
+		this.objButton.CanFocus = true;
+		this.objButton.Name = "objButton";
+		this.objButton.UseUnderline = true;
+		this.objButton.Label = global::Mono.Unix.Catalog.GetString("Confirm");
+		this.hbox5.Add(this.objButton);
+		global::Gtk.Box.BoxChild w14 = ((global::Gtk.Box.BoxChild)(this.hbox5[this.objButton]));
+		w14.Position = 2;
+		w14.Fill = false;
+		this.alignment1.Add(this.hbox5);
 		this.vbox1.Add(this.alignment1);
-		global::Gtk.Box.BoxChild w13 = ((global::Gtk.Box.BoxChild)(this.vbox1[this.alignment1]));
-		w13.Position = 2;
-		w13.Expand = false;
-		w13.Fill = false;
+		global::Gtk.Box.BoxChild w16 = ((global::Gtk.Box.BoxChild)(this.vbox1[this.alignment1]));
+		w16.Position = 2;
+		w16.Expand = false;
+		w16.Fill = false;
 		// Container child vbox1.Gtk.Box+BoxChild
 		this.vpaned1 = new global::Gtk.VPaned();
 		this.vpaned1.CanFocus = true;
@@ -213,8 +248,8 @@ Step 4:
 		this.label3.Xalign = 0F;
 		this.label3.LabelProp = global::Mono.Unix.Catalog.GetString("3. Define binary state");
 		this.hbox3.Add(this.label3);
-		global::Gtk.Box.BoxChild w14 = ((global::Gtk.Box.BoxChild)(this.hbox3[this.label3]));
-		w14.Position = 0;
+		global::Gtk.Box.BoxChild w17 = ((global::Gtk.Box.BoxChild)(this.hbox3[this.label3]));
+		w17.Position = 0;
 		// Container child hbox3.Gtk.Box+BoxChild
 		this.vbox4 = new global::Gtk.VBox();
 		this.vbox4.Name = "vbox4";
@@ -224,18 +259,18 @@ Step 4:
 		this.combobox2 = global::Gtk.ComboBox.NewText();
 		this.combobox2.Name = "combobox2";
 		this.vbox4.Add(this.combobox2);
-		global::Gtk.Box.BoxChild w15 = ((global::Gtk.Box.BoxChild)(this.vbox4[this.combobox2]));
-		w15.Position = 0;
-		w15.Expand = false;
-		w15.Fill = false;
+		global::Gtk.Box.BoxChild w18 = ((global::Gtk.Box.BoxChild)(this.vbox4[this.combobox2]));
+		w18.Position = 0;
+		w18.Expand = false;
+		w18.Fill = false;
 		// Container child vbox4.Gtk.Box+BoxChild
 		this.hseparator4 = new global::Gtk.HSeparator();
 		this.hseparator4.Name = "hseparator4";
 		this.vbox4.Add(this.hseparator4);
-		global::Gtk.Box.BoxChild w16 = ((global::Gtk.Box.BoxChild)(this.vbox4[this.hseparator4]));
-		w16.Position = 1;
-		w16.Expand = false;
-		w16.Fill = false;
+		global::Gtk.Box.BoxChild w19 = ((global::Gtk.Box.BoxChild)(this.vbox4[this.hseparator4]));
+		w19.Position = 1;
+		w19.Expand = false;
+		w19.Fill = false;
 		// Container child vbox4.Gtk.Box+BoxChild
 		this.entry4 = new global::Gtk.Entry();
 		this.entry4.CanFocus = true;
@@ -243,13 +278,13 @@ Step 4:
 		this.entry4.IsEditable = true;
 		this.entry4.InvisibleChar = '●';
 		this.vbox4.Add(this.entry4);
-		global::Gtk.Box.BoxChild w17 = ((global::Gtk.Box.BoxChild)(this.vbox4[this.entry4]));
-		w17.Position = 2;
-		w17.Expand = false;
-		w17.Fill = false;
+		global::Gtk.Box.BoxChild w20 = ((global::Gtk.Box.BoxChild)(this.vbox4[this.entry4]));
+		w20.Position = 2;
+		w20.Expand = false;
+		w20.Fill = false;
 		this.hbox3.Add(this.vbox4);
-		global::Gtk.Box.BoxChild w18 = ((global::Gtk.Box.BoxChild)(this.hbox3[this.vbox4]));
-		w18.Position = 1;
+		global::Gtk.Box.BoxChild w21 = ((global::Gtk.Box.BoxChild)(this.hbox3[this.vbox4]));
+		w21.Position = 1;
 		// Container child hbox3.Gtk.Box+BoxChild
 		this.button2 = new global::Gtk.Button();
 		this.button2.CanFocus = true;
@@ -257,14 +292,14 @@ Step 4:
 		this.button2.UseUnderline = true;
 		this.button2.Label = global::Mono.Unix.Catalog.GetString("Confirm");
 		this.hbox3.Add(this.button2);
-		global::Gtk.Box.BoxChild w19 = ((global::Gtk.Box.BoxChild)(this.hbox3[this.button2]));
-		w19.Position = 2;
-		w19.Fill = false;
+		global::Gtk.Box.BoxChild w22 = ((global::Gtk.Box.BoxChild)(this.hbox3[this.button2]));
+		w22.Position = 2;
+		w22.Fill = false;
 		this.hpaned1.Add(this.hbox3);
 		this.vpaned1.Add(this.hpaned1);
 		this.vbox1.Add(this.vpaned1);
-		global::Gtk.Box.BoxChild w22 = ((global::Gtk.Box.BoxChild)(this.vbox1[this.vpaned1]));
-		w22.Position = 3;
+		global::Gtk.Box.BoxChild w25 = ((global::Gtk.Box.BoxChild)(this.vbox1[this.vpaned1]));
+		w25.Position = 3;
 		// Container child vbox1.Gtk.Box+BoxChild
 		this.hbox4 = new global::Gtk.HBox();
 		this.hbox4.Name = "hbox4";
@@ -276,14 +311,14 @@ Step 4:
 		this.label5.Xalign = 0F;
 		this.label5.LabelProp = global::Mono.Unix.Catalog.GetString("4. Get object information");
 		this.hbox4.Add(this.label5);
-		global::Gtk.Box.BoxChild w23 = ((global::Gtk.Box.BoxChild)(this.hbox4[this.label5]));
-		w23.Position = 0;
+		global::Gtk.Box.BoxChild w26 = ((global::Gtk.Box.BoxChild)(this.hbox4[this.label5]));
+		w26.Position = 0;
 		// Container child hbox4.Gtk.Box+BoxChild
 		this.combobox4 = global::Gtk.ComboBox.NewText();
 		this.combobox4.Name = "combobox4";
 		this.hbox4.Add(this.combobox4);
-		global::Gtk.Box.BoxChild w24 = ((global::Gtk.Box.BoxChild)(this.hbox4[this.combobox4]));
-		w24.Position = 1;
+		global::Gtk.Box.BoxChild w27 = ((global::Gtk.Box.BoxChild)(this.hbox4[this.combobox4]));
+		w27.Position = 1;
 		// Container child hbox4.Gtk.Box+BoxChild
 		this.button4 = new global::Gtk.Button();
 		this.button4.CanFocus = true;
@@ -291,13 +326,13 @@ Step 4:
 		this.button4.UseUnderline = true;
 		this.button4.Label = global::Mono.Unix.Catalog.GetString("Confirm");
 		this.hbox4.Add(this.button4);
-		global::Gtk.Box.BoxChild w25 = ((global::Gtk.Box.BoxChild)(this.hbox4[this.button4]));
-		w25.Position = 2;
-		w25.Fill = false;
+		global::Gtk.Box.BoxChild w28 = ((global::Gtk.Box.BoxChild)(this.hbox4[this.button4]));
+		w28.Position = 2;
+		w28.Fill = false;
 		this.vbox1.Add(this.hbox4);
-		global::Gtk.Box.BoxChild w26 = ((global::Gtk.Box.BoxChild)(this.vbox1[this.hbox4]));
-		w26.Position = 4;
-		w26.Fill = false;
+		global::Gtk.Box.BoxChild w29 = ((global::Gtk.Box.BoxChild)(this.vbox1[this.hbox4]));
+		w29.Position = 4;
+		w29.Fill = false;
 		this.Add(this.vbox1);
 		if ((this.Child != null))
 		{
