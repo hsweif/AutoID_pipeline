@@ -13,13 +13,13 @@ public partial class MainWindow
 
 	private global::Gtk.VBox vbox3;
 
-	private global::Gtk.Entry entry3;
+	private global::Gtk.Entry rfidEntry;
 
 	private global::Gtk.HSeparator hseparator3;
 
-	private global::Gtk.ComboBox combobox1;
+	private global::Gtk.ComboBox rfidComboBox;
 
-	private global::Gtk.Button button1;
+	private global::Gtk.Button rfidButton;
 
 	private global::Gtk.Alignment alignment1;
 
@@ -111,13 +111,13 @@ Step 4:
 		this.vbox3.Homogeneous = true;
 		this.vbox3.Spacing = 6;
 		// Container child vbox3.Gtk.Box+BoxChild
-		this.entry3 = new global::Gtk.Entry();
-		this.entry3.CanFocus = true;
-		this.entry3.Name = "entry3";
-		this.entry3.IsEditable = true;
-		this.entry3.InvisibleChar = '●';
-		this.vbox3.Add(this.entry3);
-		global::Gtk.Box.BoxChild w3 = ((global::Gtk.Box.BoxChild)(this.vbox3[this.entry3]));
+		this.rfidEntry = new global::Gtk.Entry();
+		this.rfidEntry.CanFocus = true;
+		this.rfidEntry.Name = "rfidEntry";
+		this.rfidEntry.IsEditable = true;
+		this.rfidEntry.InvisibleChar = '●';
+		this.vbox3.Add(this.rfidEntry);
+		global::Gtk.Box.BoxChild w3 = ((global::Gtk.Box.BoxChild)(this.vbox3[this.rfidEntry]));
 		w3.Position = 0;
 		w3.Expand = false;
 		w3.Fill = false;
@@ -130,10 +130,10 @@ Step 4:
 		w4.Expand = false;
 		w4.Fill = false;
 		// Container child vbox3.Gtk.Box+BoxChild
-		this.combobox1 = global::Gtk.ComboBox.NewText();
-		this.combobox1.Name = "combobox1";
-		this.vbox3.Add(this.combobox1);
-		global::Gtk.Box.BoxChild w5 = ((global::Gtk.Box.BoxChild)(this.vbox3[this.combobox1]));
+		this.rfidComboBox = global::Gtk.ComboBox.NewText();
+		this.rfidComboBox.Name = "rfidComboBox";
+		this.vbox3.Add(this.rfidComboBox);
+		global::Gtk.Box.BoxChild w5 = ((global::Gtk.Box.BoxChild)(this.vbox3[this.rfidComboBox]));
 		w5.Position = 2;
 		w5.Expand = false;
 		w5.Fill = false;
@@ -141,13 +141,13 @@ Step 4:
 		global::Gtk.Box.BoxChild w6 = ((global::Gtk.Box.BoxChild)(this.hbox1[this.vbox3]));
 		w6.Position = 1;
 		// Container child hbox1.Gtk.Box+BoxChild
-		this.button1 = new global::Gtk.Button();
-		this.button1.CanFocus = true;
-		this.button1.Name = "button1";
-		this.button1.UseUnderline = true;
-		this.button1.Label = global::Mono.Unix.Catalog.GetString("Confirm");
-		this.hbox1.Add(this.button1);
-		global::Gtk.Box.BoxChild w7 = ((global::Gtk.Box.BoxChild)(this.hbox1[this.button1]));
+		this.rfidButton = new global::Gtk.Button();
+		this.rfidButton.CanFocus = true;
+		this.rfidButton.Name = "rfidButton";
+		this.rfidButton.UseUnderline = true;
+		this.rfidButton.Label = global::Mono.Unix.Catalog.GetString("Confirm");
+		this.hbox1.Add(this.rfidButton);
+		global::Gtk.Box.BoxChild w7 = ((global::Gtk.Box.BoxChild)(this.hbox1[this.rfidButton]));
 		w7.Position = 2;
 		w7.Fill = false;
 		this.vbox1.Add(this.hbox1);
@@ -196,10 +196,12 @@ Step 4:
 		this.vpaned1 = new global::Gtk.VPaned();
 		this.vpaned1.CanFocus = true;
 		this.vpaned1.Name = "vpaned1";
+		this.vpaned1.Position = 10;
 		// Container child vpaned1.Gtk.Paned+PanedChild
 		this.hpaned1 = new global::Gtk.HPaned();
 		this.hpaned1.CanFocus = true;
 		this.hpaned1.Name = "hpaned1";
+		this.hpaned1.Position = 10;
 		// Container child hpaned1.Gtk.Paned+PanedChild
 		this.hbox3 = new global::Gtk.HBox();
 		this.hbox3.Name = "hbox3";
