@@ -117,18 +117,14 @@ public partial class MainWindow : Gtk.Window
         if(objectEntry.Text.Length == 0)
         {
             objName = objectCombobox.ActiveText;
-            JArray items = tagInfo[objName].Value<JArray>();
-            tagInfo[objName] = items;
-            Console.Write(tagInfo);
         }
         else
         {
             objName = objectEntry.Text;
-            List<string> list = new List<string>
-            {
-                rfid
-            };
-            tagInfo.Add(new JProperty(objName, list));
+            JArray jArray = new JArray();
+            JProperty jObject = new JProperty(objName, jArray);
+            tagInfo.Add(jObject);
+            Console.WriteLine(tagInfo);
         }
         UpdateObjectInfo();
     }
