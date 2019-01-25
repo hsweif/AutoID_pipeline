@@ -1,5 +1,8 @@
 ﻿using System;
+using System.Collections.Generic;
 using Gtk;
+// using ThingMagic;
+using System.Threading;
 
 namespace AutoID_pipeline
 {
@@ -11,7 +14,6 @@ namespace AutoID_pipeline
             MainWindow win = new MainWindow();
             win.Show();
             Application.Run();
-
         }
     }
 }

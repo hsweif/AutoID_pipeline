@@ -3,6 +3,8 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AutoID_pipeline", "AutoID_pipeline\AutoID_pipeline.csproj", "{32FA4ED8-AA1C-4463-9317-7BA34C2C809B}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ThingMagic.Reader", "AutoID-Mercury-CS\ThingMagic.Reader\ThingMagic.Reader.csproj", "{78467BE9-1750-4E88-BEE1-D09CC30CF94A}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x86 = Debug|x86
@@ -13,5 +15,9 @@ Global
 		{32FA4ED8-AA1C-4463-9317-7BA34C2C809B}.Debug|x86.Build.0 = Debug|x86
 		{32FA4ED8-AA1C-4463-9317-7BA34C2C809B}.Release|x86.ActiveCfg = Release|x86
 		{32FA4ED8-AA1C-4463-9317-7BA34C2C809B}.Release|x86.Build.0 = Release|x86
+		{78467BE9-1750-4E88-BEE1-D09CC30CF94A}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{78467BE9-1750-4E88-BEE1-D09CC30CF94A}.Debug|x86.Build.0 = Debug|Any CPU
+		{78467BE9-1750-4E88-BEE1-D09CC30CF94A}.Release|x86.ActiveCfg = Release|Any CPU
+		{78467BE9-1750-4E88-BEE1-D09CC30CF94A}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

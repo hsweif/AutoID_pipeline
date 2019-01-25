@@ -123,6 +123,7 @@ Step 4:
 		this.rfidEntry.CanFocus = true;
 		this.rfidEntry.Name = "rfidEntry";
 		this.rfidEntry.IsEditable = true;
+		this.rfidEntry.InvisibleChar = '●';
 		this.vbox3.Add(this.rfidEntry);
 		global::Gtk.Box.BoxChild w3 = ((global::Gtk.Box.BoxChild)(this.vbox3[this.rfidEntry]));
 		w3.Position = 0;
@@ -203,6 +204,7 @@ Step 4:
 		this.objectEntry.CanFocus = true;
 		this.objectEntry.Name = "objectEntry";
 		this.objectEntry.IsEditable = true;
+		this.objectEntry.InvisibleChar = '●';
 		this.vbox5.Add(this.objectEntry);
 		global::Gtk.Box.BoxChild w12 = ((global::Gtk.Box.BoxChild)(this.vbox5[this.objectEntry]));
 		w12.Position = 2;
@@ -276,6 +278,7 @@ Step 4:
 		this.semEntry.CanFocus = true;
 		this.semEntry.Name = "semEntry";
 		this.semEntry.IsEditable = true;
+		this.semEntry.InvisibleChar = '●';
 		this.vbox4.Add(this.semEntry);
 		global::Gtk.Box.BoxChild w20 = ((global::Gtk.Box.BoxChild)(this.vbox4[this.semEntry]));
 		w20.Position = 2;

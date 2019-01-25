@@ -3,9 +3,11 @@ using System.Collections.Generic;
 using Gtk;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
+using System.Threading;
 
 public partial class MainWindow : Gtk.Window
 {
+    public static MainWindow ins;
     protected class TagInfo
     {
         string rfid;
@@ -19,6 +21,9 @@ public partial class MainWindow : Gtk.Window
         }
     }
 
+
+    static private int rssiThreshold = 100;
+    static private int readTimeout = 500;
     private string tagInfoPath = "../../TagInfo.json";
     private string rfid;
     private string objName;
@@ -30,12 +35,15 @@ public partial class MainWindow : Gtk.Window
     public MainWindow() : base(Gtk.WindowType.Toplevel)
     {
         Build();
+        ins = this;
         LoadObjectList();
         LoadBinaryState();
-        LoadRFIDList();
         BindButton();
         JArray items = tagInfo["drawer"].Value<JArray>();
         Console.WriteLine(items);
+        ThreadStart threadStart = new ThreadStart(ReadSyncFunc);
+        Thread readerThread = new Thread(threadStart);
+        readerThread.Start();
     }
 
     protected void OnDeleteEvent(object sender, DeleteEventArgs a)
@@ -52,8 +60,14 @@ public partial class MainWindow : Gtk.Window
         binButton.Clicked += new EventHandler(BinButton_clicked);
     }
 
-    protected void LoadRFIDList()
+    public void UpdateRFIDList(List<string> rfidList)
     {
+        int cnt = 0;
+        foreach (var rf in rfidList)
+        {
+            rfidComboBox.InsertText(cnt, rf);
+            cnt++;
+        }
     }
 
     protected void LoadObjectList()
@@ -155,4 +169,44 @@ public partial class MainWindow : Gtk.Window
         UpdateObjectInfo();
     }
 
+    protected static void SetupReader(string uri)
+    {
+        string readeruri = uri;
+        // reader = Reader.Create(readeruri);
+    }
+
+    private static void ReadSyncFunc()
+    {
+        int testCnt = 0;
+        while (true)
+        {
+            Console.WriteLine(testCnt);
+            /*
+            TagReadData[] reads = reader.Read(readTimeout);
+            List<TagReadData> tagReads = new List<TagReadData>(reads);
+            tagReads.Sort(
+                delegate (TagReadData t1, TagReadData t2)
+                {
+                    return t2.Rssi.CompareTo(t1.Rssi);
+                }
+            );
+            List<string> list = new List<string>();
+            foreach(var tagRead in tagReads)
+            {
+                if(tagRead.Rssi > rssiThreshold)
+                {
+                    // TODO: Add to list
+                    list.Add(tagRead.EpcString);
+                }
+            }
+            */
+            List<string> list = new List<string>()
+                {
+                    testCnt.ToString()
+                };
+            testCnt++;
+            MainWindow.ins.UpdateRFIDList(list);
+            Thread.Sleep(readTimeout);
+        }
+    }
 }
