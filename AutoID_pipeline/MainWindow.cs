@@ -23,14 +23,16 @@ public partial class MainWindow : Gtk.Window
 
 
     static private int rssiThreshold = 100;
-    static private int readTimeout = 500;
+    static private int readTimeout = 1000;
     private string tagInfoPath = "../../TagInfo.json";
     private string rfid;
     private string objName;
+    private Gtk.ListStore rfidListStore;
     private string onState = "ON", offState = "OFF";
     private string onSemantic, offSemantic;
     private JObject tagInfo;
     int objNum = 0;
+    int rfidNum = 0;
 
     public MainWindow() : base(Gtk.WindowType.Toplevel)
     {
@@ -41,6 +43,8 @@ public partial class MainWindow : Gtk.Window
         BindButton();
         JArray items = tagInfo["drawer"].Value<JArray>();
         Console.WriteLine(items);
+        rfidListStore = new ListStore(typeof(string));
+        rfidComboBox.Model = rfidListStore;
         ThreadStart threadStart = new ThreadStart(ReadSyncFunc);
         Thread readerThread = new Thread(threadStart);
         readerThread.Start();
@@ -62,11 +66,9 @@ public partial class MainWindow : Gtk.Window
 
     public void UpdateRFIDList(List<string> rfidList)
     {
-        int cnt = 0;
-        foreach (var rf in rfidList)
+        foreach(var rf in rfidList)
         {
-            rfidComboBox.InsertText(cnt, rf);
-            cnt++;
+            rfidListStore.AppendValues(rf);
         }
     }
 
@@ -181,25 +183,6 @@ public partial class MainWindow : Gtk.Window
         while (true)
         {
             Console.WriteLine(testCnt);
-            /*
-            TagReadData[] reads = reader.Read(readTimeout);
-            List<TagReadData> tagReads = new List<TagReadData>(reads);
-            tagReads.Sort(
-                delegate (TagReadData t1, TagReadData t2)
-                {
-                    return t2.Rssi.CompareTo(t1.Rssi);
-                }
-            );
-            List<string> list = new List<string>();
-            foreach(var tagRead in tagReads)
-            {
-                if(tagRead.Rssi > rssiThreshold)
-                {
-                    // TODO: Add to list
-                    list.Add(tagRead.EpcString);
-                }
-            }
-            */
             List<string> list = new List<string>()
                 {
                     testCnt.ToString()
