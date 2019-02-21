@@ -4,6 +4,9 @@ using Gtk;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using System.Threading;
+using ThingMagic;
+using SampleConsoleApplication;
+
 
 public partial class MainWindow : Gtk.Window
 {
@@ -21,18 +24,22 @@ public partial class MainWindow : Gtk.Window
         }
     }
 
-
+    // private string readerUri = "tmr://101.6.114.16";
+    private string readerUri = "";
+    static private bool readerConnected = false;
     static private int rssiThreshold = 100;
     static private int readTimeout = 1000;
     private string tagInfoPath = "../../TagInfo.json";
     private string rfid;
     private string objName;
     private Gtk.ListStore rfidListStore;
+    private List<string> origRfidList;
     private string onState = "ON", offState = "OFF";
     private string onSemantic, offSemantic;
     private JObject tagInfo;
     int objNum = 0;
     int rfidNum = 0;
+    static private Reader mercuryReader;
 
     public MainWindow() : base(Gtk.WindowType.Toplevel)
     {
@@ -44,10 +51,26 @@ public partial class MainWindow : Gtk.Window
         JArray items = tagInfo["drawer"].Value<JArray>();
         Console.WriteLine(items);
         rfidListStore = new ListStore(typeof(string));
+        origRfidList = new List<string>();
         rfidComboBox.Model = rfidListStore;
+        SetMercuryReader();
         ThreadStart threadStart = new ThreadStart(ReadSyncFunc);
         Thread readerThread = new Thread(threadStart);
         readerThread.Start();
+    }
+
+    protected void SetMercuryReader()
+    {
+        try
+        {
+            mercuryReader = Reader.Create(readerUri);
+            mercuryReader.Connect();
+            readerConnected = true;
+        }
+        catch(Exception e)
+        {
+            // Console.WriteLine(e.StackTrace);
+        }
     }
 
     protected void OnDeleteEvent(object sender, DeleteEventArgs a)
@@ -66,9 +89,35 @@ public partial class MainWindow : Gtk.Window
 
     public void UpdateRFIDList(List<string> rfidList)
     {
-        foreach(var rf in rfidList)
+        if(rfidList == origRfidList)
         {
-            rfidListStore.AppendValues(rf);
+            return;
+        }
+        // rfidListStore.Clear();
+        /*
+        foreach(var rfid in rfidListStore)
+        {
+            var v = rfid.ToString();
+            Console.WriteLine(v.ToString());
+            if (!rfidList.Contains(v))
+            {
+                TreeIter iter;
+                rfidListStore.GetIterFromString(out iter, v);
+                if(!rfidListStore.Remove(ref iter)) {
+                    Console.WriteLine("Fail to remove");
+                }
+            }
+            else
+            {
+                rfidList.Remove(v);
+            }
+        }
+        */
+        origRfidList = rfidList;
+        foreach(var rfid in rfidList)
+        {
+            Console.WriteLine(rfid);
+            rfidListStore.AppendValues(rfid);
         }
     }
 
@@ -171,24 +220,27 @@ public partial class MainWindow : Gtk.Window
         UpdateObjectInfo();
     }
 
-    protected static void SetupReader(string uri)
-    {
-        string readeruri = uri;
-        // reader = Reader.Create(readeruri);
-    }
-
     private static void ReadSyncFunc()
     {
         int testCnt = 0;
         while (true)
         {
-            Console.WriteLine(testCnt);
-            List<string> list = new List<string>()
+            if(readerConnected)
+            {
+                List<string> rfidDataList = Program.GetRfidData(mercuryReader, readTimeout, rssiThreshold);
+                MainWindow.ins.UpdateRFIDList(rfidDataList);
+            }
+            else
+            {
+                Console.WriteLine("Try to connect to the reader...");
+                // MainWindow.ins.SetMercuryReader();
+                List<string> list = new List<string>()
                 {
                     testCnt.ToString()
                 };
-            testCnt++;
-            MainWindow.ins.UpdateRFIDList(list);
+                testCnt++;
+                MainWindow.ins.UpdateRFIDList(list);
+            }
             Thread.Sleep(readTimeout);
         }
     }
