@@ -7,12 +7,17 @@
     <widget-library name="glade-sharp, Version=2.12.0.0, Culture=neutral, PublicKeyToken=35e10195dab3c99f" />
     <widget-library name="../bin/Debug/AutoID_pipeline.exe" internal="true" />
   </import>
-  <widget class="Gtk.Window" id="MainWindow" design-size="583 1050">
+  <widget class="Gtk.Window" id="MainWindow" design-size="720 1050">
     <property name="MemberName" />
-    <property name="Title" translatable="yes">MainWindow</property>
+    <property name="WidthRequest">720</property>
+    <property name="HeightRequest">720</property>
+    <property name="Title" translatable="yes">Pipeline</property>
     <property name="WindowPosition">CenterOnParent</property>
     <property name="BorderWidth">6</property>
-    <property name="AllowShrink">True</property>
+    <property name="Resizable">False</property>
+    <property name="AllowGrow">False</property>
+    <property name="DefaultWidth">720</property>
+    <property name="DefaultHeight">720</property>
     <signal name="DeleteEvent" handler="OnDeleteEvent" />
     <child>
       <widget class="Gtk.VBox" id="vbox1">
@@ -20,12 +25,18 @@
         <property name="Homogeneous">True</property>
         <property name="Spacing">6</property>
         <child>
-          <widget class="Gtk.TextView" id="textview1">
+          <widget class="Gtk.ScrolledWindow" id="GtkScrolledWindow">
             <property name="MemberName" />
-            <property name="CanFocus">True</property>
-            <property name="Editable">False</property>
-            <property name="CursorVisible">False</property>
-            <property name="Text" translatable="yes">
+            <property name="VscrollbarPolicy">Always</property>
+            <property name="ShadowType">In</property>
+            <child>
+              <widget class="Gtk.TextView" id="textview1">
+                <property name="MemberName" />
+                <property name="CanFocus">True</property>
+                <property name="ShowScrollbars">True</property>
+                <property name="Editable">False</property>
+                <property name="CursorVisible">False</property>
+                <property name="Text" translatable="yes">
 This is the pipeline for AutoID test. Below is introduction for each step.
 Step 1: 
 	Input or select the RFID tag serial. Those with signal higher than threshold will shown on the list.
@@ -37,6 +48,8 @@ Step 3:
 	Define the semantic meaning of this tag. Map ON/OFF state to a meaningful word.
 Step 4:
 	You can select an object and get the information of it.</property>
+              </widget>
+            </child>
           </widget>
           <packing>
             <property name="Position">0</property>
@@ -119,6 +132,7 @@ Step 4:
               <packing>
                 <property name="Position">2</property>
                 <property name="AutoSize">False</property>
+                <property name="Expand">False</property>
                 <property name="Fill">False</property>
               </packing>
             </child>
@@ -208,6 +222,7 @@ Step 4:
                   <packing>
                     <property name="Position">2</property>
                     <property name="AutoSize">False</property>
+                    <property name="Expand">False</property>
                     <property name="Fill">False</property>
                   </packing>
                 </child>
@@ -222,108 +237,90 @@ Step 4:
           </packing>
         </child>
         <child>
-          <widget class="Gtk.VPaned" id="vpaned1">
+          <widget class="Gtk.HBox" id="hbox3">
             <property name="MemberName" />
-            <property name="CanFocus">True</property>
-            <property name="Position">10</property>
+            <property name="Homogeneous">True</property>
+            <property name="Spacing">6</property>
             <child>
-              <placeholder />
+              <widget class="Gtk.Label" id="label3">
+                <property name="MemberName" />
+                <property name="Xalign">0</property>
+                <property name="LabelProp" translatable="yes">3. Define binary state</property>
+              </widget>
+              <packing>
+                <property name="Position">0</property>
+                <property name="AutoSize">False</property>
+              </packing>
             </child>
             <child>
-              <widget class="Gtk.HPaned" id="hpaned1">
+              <widget class="Gtk.VBox" id="vbox4">
                 <property name="MemberName" />
-                <property name="CanFocus">True</property>
-                <property name="Position">10</property>
+                <property name="Homogeneous">True</property>
+                <property name="Spacing">6</property>
                 <child>
-                  <placeholder />
+                  <widget class="Gtk.ComboBox" id="binCombobox">
+                    <property name="MemberName" />
+                    <property name="IsTextCombo">True</property>
+                    <property name="Items" translatable="yes" />
+                  </widget>
+                  <packing>
+                    <property name="Position">0</property>
+                    <property name="AutoSize">True</property>
+                    <property name="Expand">False</property>
+                    <property name="Fill">False</property>
+                  </packing>
                 </child>
                 <child>
-                  <widget class="Gtk.HBox" id="hbox3">
+                  <widget class="Gtk.HSeparator" id="hseparator4">
                     <property name="MemberName" />
-                    <property name="Homogeneous">True</property>
-                    <property name="Spacing">6</property>
-                    <child>
-                      <widget class="Gtk.Label" id="label3">
-                        <property name="MemberName" />
-                        <property name="Xalign">0</property>
-                        <property name="LabelProp" translatable="yes">3. Define binary state</property>
-                      </widget>
-                      <packing>
-                        <property name="Position">0</property>
-                        <property name="AutoSize">False</property>
-                      </packing>
-                    </child>
-                    <child>
-                      <widget class="Gtk.VBox" id="vbox4">
-                        <property name="MemberName" />
-                        <property name="Homogeneous">True</property>
-                        <property name="Spacing">6</property>
-                        <child>
-                          <widget class="Gtk.ComboBox" id="binCombobox">
-                            <property name="MemberName" />
-                            <property name="IsTextCombo">True</property>
-                            <property name="Items" translatable="yes" />
-                          </widget>
-                          <packing>
-                            <property name="Position">0</property>
-                            <property name="AutoSize">True</property>
-                            <property name="Expand">False</property>
-                            <property name="Fill">False</property>
-                          </packing>
-                        </child>
-                        <child>
-                          <widget class="Gtk.HSeparator" id="hseparator4">
-                            <property name="MemberName" />
-                          </widget>
-                          <packing>
-                            <property name="Position">1</property>
-                            <property name="AutoSize">True</property>
-                            <property name="Expand">False</property>
-                            <property name="Fill">False</property>
-                          </packing>
-                        </child>
-                        <child>
-                          <widget class="Gtk.Entry" id="semEntry">
-                            <property name="MemberName" />
-                            <property name="CanFocus">True</property>
-                            <property name="IsEditable">True</property>
-                            <property name="InvisibleChar">●</property>
-                          </widget>
-                          <packing>
-                            <property name="Position">2</property>
-                            <property name="AutoSize">True</property>
-                            <property name="Expand">False</property>
-                            <property name="Fill">False</property>
-                          </packing>
-                        </child>
-                      </widget>
-                      <packing>
-                        <property name="Position">1</property>
-                        <property name="AutoSize">False</property>
-                      </packing>
-                    </child>
-                    <child>
-                      <widget class="Gtk.Button" id="binButton">
-                        <property name="MemberName" />
-                        <property name="CanFocus">True</property>
-                        <property name="Type">TextOnly</property>
-                        <property name="Label" translatable="yes">Confirm</property>
-                        <property name="UseUnderline">True</property>
-                      </widget>
-                      <packing>
-                        <property name="Position">2</property>
-                        <property name="AutoSize">False</property>
-                        <property name="Fill">False</property>
-                      </packing>
-                    </child>
                   </widget>
+                  <packing>
+                    <property name="Position">1</property>
+                    <property name="AutoSize">True</property>
+                    <property name="Expand">False</property>
+                    <property name="Fill">False</property>
+                  </packing>
+                </child>
+                <child>
+                  <widget class="Gtk.Entry" id="semEntry">
+                    <property name="MemberName" />
+                    <property name="CanFocus">True</property>
+                    <property name="IsEditable">True</property>
+                    <property name="InvisibleChar">●</property>
+                  </widget>
+                  <packing>
+                    <property name="Position">2</property>
+                    <property name="AutoSize">True</property>
+                    <property name="Expand">False</property>
+                    <property name="Fill">False</property>
+                  </packing>
                 </child>
               </widget>
+              <packing>
+                <property name="Position">1</property>
+                <property name="AutoSize">False</property>
+              </packing>
+            </child>
+            <child>
+              <widget class="Gtk.Button" id="binButton">
+                <property name="MemberName" />
+                <property name="CanFocus">True</property>
+                <property name="Type">TextOnly</property>
+                <property name="Label" translatable="yes">Confirm</property>
+                <property name="UseUnderline">True</property>
+              </widget>
+              <packing>
+                <property name="Position">2</property>
+                <property name="AutoSize">False</property>
+                <property name="Fill">False</property>
+              </packing>
             </child>
           </widget>
           <packing>
             <property name="Position">3</property>
             <property name="AutoSize">True</property>
+            <property name="Expand">False</property>
+            <property name="Fill">False</property>
           </packing>
         </child>
         <child>
@@ -354,7 +351,7 @@ Step 4:
               </packing>
             </child>
             <child>
-              <widget class="Gtk.Button" id="button4">
+              <widget class="Gtk.Button" id="infoBtn">
                 <property name="MemberName" />
                 <property name="CanFocus">True</property>
                 <property name="Type">TextOnly</property>
