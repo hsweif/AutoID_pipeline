@@ -4,6 +4,7 @@ using Gtk;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using System.Threading;
+using AutoID_pipeline;
 
 public partial class MainWindow : Gtk.Window
 {
@@ -28,6 +29,7 @@ public partial class MainWindow : Gtk.Window
     private string rfid;
     private string objName;
     private Gtk.ListStore rfidListStore;
+    private Gtk.ListStore objListStore;
     private string onState = "ON", offState = "OFF";
     private string onSemantic, offSemantic;
     private JObject tagInfo;
@@ -38,13 +40,16 @@ public partial class MainWindow : Gtk.Window
     {
         Build();
         ins = this;
+        rfidListStore = new ListStore(typeof(string));
+        objListStore = new ListStore(typeof(string));
+        rfidComboBox.Model = rfidListStore;
+        objectCombobox.Model = objListStore;
+        infoCombobox.Model = objListStore;
         LoadObjectList();
         LoadBinaryState();
         BindButton();
         JArray items = tagInfo["drawer"].Value<JArray>();
         Console.WriteLine(items);
-        rfidListStore = new ListStore(typeof(string));
-        rfidComboBox.Model = rfidListStore;
         ThreadStart threadStart = new ThreadStart(ReadSyncFunc);
         Thread readerThread = new Thread(threadStart);
         readerThread.Start();
@@ -62,6 +67,7 @@ public partial class MainWindow : Gtk.Window
         objButton.Clicked += new EventHandler(ObjButton_clicked);
         saveButton.Clicked += new EventHandler(SaveButton_clicked);
         binButton.Clicked += new EventHandler(BinButton_clicked);
+        infoButton.Clicked += new EventHandler(InfoButton_clicked);
     }
 
     public void UpdateRFIDList(List<string> rfidList)
@@ -83,7 +89,8 @@ public partial class MainWindow : Gtk.Window
                 foreach(var pair in o)
                 {
                     Console.WriteLine(pair.Key);
-                    objectCombobox.InsertText(objNum, pair.Key);
+                    // objectCombobox.InsertText(objNum, pair.Key);
+                    objListStore.AppendValues(pair.Key);
                     objNum ++;
                 }
                 tagInfo = o;
@@ -121,6 +128,17 @@ public partial class MainWindow : Gtk.Window
         }
     }
 
+    private void InfoButton_clicked(object sender, System.EventArgs eventArgs)
+    {
+        var tagName = infoCombobox.ActiveText;
+        if (tagName.Length > 0)
+        {
+            var tagWindow = new InfoWindow();
+            tagWindow.SetWindows(tagName, tagInfo[tagName]);
+            tagWindow.Show();
+        }
+    }
+
     private void ObjButton_clicked(object sender, System.EventArgs eventArgs)
     {
         if(objectEntry.Text.Length == 0)
@@ -133,7 +151,8 @@ public partial class MainWindow : Gtk.Window
             JArray jArray = new JArray();
             JProperty jObject = new JProperty(objName, jArray);
             tagInfo.Add(jObject);
-            objectCombobox.InsertText(objNum, objName);
+            // objectCombobox.InsertText(objNum, objName);
+            objListStore.AppendValues(objName);
             objNum++;
             Console.WriteLine(tagInfo);
         }

@@ -57,9 +57,9 @@ public partial class MainWindow
 
 	private global::Gtk.Label label5;
 
-	private global::Gtk.ComboBox combobox4;
+	private global::Gtk.ComboBox infoCombobox;
 
-	private global::Gtk.Button button4;
+	private global::Gtk.Button infoButton;
 
 	private global::Gtk.Button saveButton;
 
@@ -79,6 +79,7 @@ public partial class MainWindow
 		this.DefaultHeight = 720;
 		// Container child MainWindow.Gtk.Container+ContainerChild
 		this.vbox1 = new global::Gtk.VBox();
+		this.vbox1.Name = "vbox1";
 		this.vbox1.Homogeneous = true;
 		this.vbox1.Spacing = 6;
 		// Container child vbox1.Gtk.Box+BoxChild
@@ -316,19 +317,19 @@ Step 4:
 		global::Gtk.Box.BoxChild w25 = ((global::Gtk.Box.BoxChild)(this.hbox4[this.label5]));
 		w25.Position = 0;
 		// Container child hbox4.Gtk.Box+BoxChild
-		this.combobox4 = global::Gtk.ComboBox.NewText();
-		this.combobox4.Name = "combobox4";
-		this.hbox4.Add(this.combobox4);
-		global::Gtk.Box.BoxChild w26 = ((global::Gtk.Box.BoxChild)(this.hbox4[this.combobox4]));
+		this.infoCombobox = global::Gtk.ComboBox.NewText();
+		this.infoCombobox.Name = "infoCombobox";
+		this.hbox4.Add(this.infoCombobox);
+		global::Gtk.Box.BoxChild w26 = ((global::Gtk.Box.BoxChild)(this.hbox4[this.infoCombobox]));
 		w26.Position = 1;
 		// Container child hbox4.Gtk.Box+BoxChild
-		this.button4 = new global::Gtk.Button();
-		this.button4.CanFocus = true;
-		this.button4.Name = "button4";
-		this.button4.UseUnderline = true;
-		this.button4.Label = global::Mono.Unix.Catalog.GetString("Confirm");
-		this.hbox4.Add(this.button4);
-		global::Gtk.Box.BoxChild w27 = ((global::Gtk.Box.BoxChild)(this.hbox4[this.button4]));
+		this.infoButton = new global::Gtk.Button();
+		this.infoButton.CanFocus = true;
+		this.infoButton.Name = "infoButton";
+		this.infoButton.UseUnderline = true;
+		this.infoButton.Label = global::Mono.Unix.Catalog.GetString("Confirm");
+		this.hbox4.Add(this.infoButton);
+		global::Gtk.Box.BoxChild w27 = ((global::Gtk.Box.BoxChild)(this.hbox4[this.infoButton]));
 		w27.Position = 2;
 		w27.Fill = false;
 		this.vbox1.Add(this.hbox4);
